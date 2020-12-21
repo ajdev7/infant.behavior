@@ -1,17 +1,14 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-  <title>Timeline | editing | Individual editable items</title>
+  <title>Social Emotional Behavioral Graph for Infants</title>
 
   <style>
-    body, html {
+    body,
+    html {
       font-family: arial, sans-serif;
       font-size: 11pt;
-    }
-
-    div.vis-editable,
-    div.vis-editable.vis-selected {
-      /* custom styling for editable items... */
     }
 
     div.vis-readonly,
@@ -21,44 +18,94 @@
       border-color: red;
       color: white;
     }
+
+    .vis-item.vis-background.good {
+      background-color: rgba(0, 255, 0, 0.2);
+    }
+
+    .vis-item.vis-background.bad {
+      background-color: rgba(255, 0, 0, 0.2);
+    }
   </style>
 
   <script src="./standalone/umd/vis-timeline-graph2d.min.js"></script>
   <link href="./styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  
+
 </head>
+
 <body>
   <h1>Social Emotional Behavioral Graph for Infants</h1>
 
-<p>Specify individual items to be editable or readonly.</p>
+  <div id="visualization"></div>
 
-<div id="visualization"></div>
+  <script>
+    // create groups to highlight groupUpdate
+    var groups = new vis.DataSet([
+      { id: 1, content: 'Listening by keeping quiet, responds to pain, and touch.' },
+      { id: 2, content: 'Communicates, seeks attention by crying or rapidly turning<br>head sideways, and moving arms, legs and body.' },
+      { id: 3, content: 'Notices mother’s or caregiver’s presence, or absence.' },
+      { id: 4, content: 'Begins studying faces, gazing at mother’s or caregiver’s face<br>with interest. Can tell when mother or caregiver is around.' },
+      { id: 5, content: 'Smiles to parents or smiles back.' },
+      { id: 6, content: 'Reaches for familiar people or objects.<br>Waits eagerly to be fed.' },
+      { id: 7, content: 'Babbles, laughs, orient to voice, ad enjoy looking.' },
+      { id: 8, content: 'Develops fear of strangers.' },
+      { id: 9, content: 'Points with hands for objects of interest.' },
+      { id: 10, content: 'Waves bye-bye, plays pat- a-cake, peke-a-boo.' },
+      { id: 11, content: 'Develops Joint attention, actively explores environment.' },
+      { id: 12, content: 'Says Dada, Mama, knows his name, and comes<br>when called.' },
+      { id: 13, content: 'Checks with caregiver before doing certain activities<br>(Social referencing), learning rules, and cooperating.' },
+      { id: 14, content: 'Points to indicate needs, has a budding vocabulary of<br>at least 3-6 news words other than mama, and Dada.' },
+    ]);
+    // create a DataSet with items
+    var items = new vis.DataSet([
+      { id: 1, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2020-12-02', group: 1 },
+      { id: 2, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2020-12-04', group: 2 },
+      { id: 3, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2020-12-05', group: 3 },
+      { id: 4, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2020-12-14', group: 4 },
+      { id: 5, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-01-24', group: 5 },
+      { id: 6, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-02-15', group: 6 },
+      { id: 7, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-03-20', group: 7 },
+      { id: 8, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-05-17', group: 8 },
+      { id: 9, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-06-25', group: 9 },
+      { id: 10, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-9-01', group: 10 },
+      { id: 11, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-09-11', group: 11 },
+      { id: 12, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-10-01', group: 12 },
+      { id: 13, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2021-11-14', group: 13 },
+      { id: 14, content: 'Start', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2022-01-01', group: 14 },
+      { start: "2020-12-01", end: "2020-12-03", type: "background", className: "good", group: 1 },
+      { start: "2020-12-02", end: "2020-12-06", type: "background", className: "good", group: 2 },
+      { start: "2020-12-03", end: "2020-12-07", type: "background", className: "good", group: 3 },
+      { start: "2020-12-08", end: "2020-12-20", type: "background", className: "good", group: 4 },
+      { start: "2021-01-14", end: "2022-04-01", type: "background", className: "bad", group: 4 },
+      { start: "2021-01-14", end: "2021-01-31", type: "background", className: "good", group: 5 },
+      { start: "2021-03-01", end: "2022-04-01", type: "background", className: "bad", group: 5 },
+      { start: "2021-02-01", end: "2021-03-01", type: "background", className: "good", group: 6 },
+      { start: "2021-03-01", end: "2021-04-01", type: "background", className: "good", group: 7 },
+      { start: "2021-06-01", end: "2022-04-01", type: "background", className: "bad", group: 7 },
+      { start: "2021-05-01", end: "2021-06-01", type: "background", className: "good", group: 8 },
+      { start: "2021-05-01", end: "2021-08-01", type: "background", className: "good", group: 9 },
+      { start: "2021-08-01", end: "2021-12-01", type: "background", className: "good", group: 10 },
+      { start: "2021-12-01", end: "2022-04-01", type: "background", className: "bad", group: 10 },
+      { start: "2021-08-01", end: "2021-12-01", type: "background", className: "good", group: 11 },
+      { start: "2021-12-01", end: "2022-04-01", type: "background", className: "bad", group: 11 },
+      { start: "2021-08-01", end: "2021-12-01", type: "background", className: "good", group: 12 },
+      { start: "2021-11-01", end: "2021-12-01", type: "background", className: "good", group: 13 },
+      { start: "2021-12-01", end: "2022-04-01", type: "background", className: "bad", group: 13 },
+      { start: "2021-12-01", end: "2022-02-01", type: "background", className: "good", group: 14 },
+      { start: "2022-02-01", end: "2022-04-01", type: "background", className: "bad", group: 14 },
+    ]);
 
-<script>
-  // create groups to highlight groupUpdate
-  var groups = new vis.DataSet([
-    {id: 1, content: 'Group 1'},
-    {id: 2, content: 'Group 2'}
-  ]);
-  // create a DataSet with items
-  var items = new vis.DataSet([
-    {id: 1, content: 'Editable', editable: true, start: '2010-08-23', group: 1},
-    {id: 2, content: 'Editable', editable: true, start: '2010-08-23T23:00:00', group: 2},
-    {id: 3, content: 'Read-only', editable: false, start: '2010-08-24T16:00:00', group: 1},
-    {id: 4, content: 'Read-only', editable: false, start: '2010-08-26', end: '2010-09-02', group: 2},
-    {id: 5, content: 'Edit Time Only', editable: { updateTime: true, updateGroup: false, remove: false }, start: '2010-08-28', group: 1},
-    {id: 6, content: 'Edit Group Only', editable: { updateTime: false, updateGroup: true, remove: false }, start: '2010-08-29', group: 2},
-    {id: 7, content: 'Remove Only', editable: { updateTime: false, updateGroup: false, remove: true }, start: '2010-08-31', end: '2010-09-03', group: 1},
-    {id: 8, content: 'Default', start: '2010-09-04T12:00:00', group: 2}
-  ]);
+    var container = document.getElementById('visualization');
+    var options = {
+      start: '2020-11-29',
+      end: '2020-12-31',
+      editable: true,
+      showCurrentTime: false
+    };
 
-  var container = document.getElementById('visualization');
-  var options = {
-    editable: true   // default for all items
-  };
+    var timeline = new vis.Timeline(container, items, groups, options);
 
-  var timeline = new vis.Timeline(container, items, groups, options);
-
-</script>
+  </script>
 </body>
+
 </html>
