@@ -26,15 +26,31 @@
     .vis-item.vis-background.bad {
       background-color: rgba(255, 0, 0, 0.2);
     }
+
+    #btnDownload {
+      margin-left: 160px;
+    }
   </style>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="./standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="./styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="./styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <h1>Social Emotional Behavioral Graph for Infants</h1>
+
+  <label>Birth Date:</label>
+  <input type='text' class='date'>
+  &nbsp;
+  <button type="button" id="btnDownload">Download</button>
+  <br />
+  <br />
 
   <div id="visualization"></div>
 
@@ -98,12 +114,67 @@
     var container = document.getElementById('visualization');
     var options = {
       start: '2020-11-29',
-      end: '2020-12-31',
+      end: '2020-12-15',
       editable: true,
       showCurrentTime: false
     };
 
     var timeline = new vis.Timeline(container, items, groups, options);
+
+    // Date Time
+    var birthDate = new Date("2020-12-01");
+
+    $(".date")
+      .datepicker()
+      .datepicker("setDate", birthDate)
+      .on("change", function () {
+        console.log("date changed : ", this.value);
+        var newBirthDate = this.value;
+
+        changeBirthDate(newBirthDate)
+
+      });
+
+    $("#btnDownload").click(function () {
+      // var itemData = items.get();
+      var groupData = groups.get();
+
+      // console.log('itemData : ', itemData);
+      // console.log('groupData', groupData);
+
+      var excelData = [];
+      for (let group of groupData) {
+        excelData.push({
+          id: group.id,
+          behaviour: group.content,
+          date: items.get(group.id).start
+        })
+      }
+
+      console.log('excelData :', excelData);
+    });
+
+    function changeBirthDate(newBirthDate) {
+      var itemIds = items.getIds();
+      let diffDays = moment(newBirthDate).diff(moment(birthDate).format("YYYY-MM-DD"), 'days');
+
+      for (let itemId of itemIds) {
+        let item = items.get(itemId);
+
+        let newStart = moment(item.start).add(diffDays, 'day').format("YYYY-MM-DD");
+
+        let newEnd = moment(item.end).add(diffDays, 'day').format("YYYY-MM-DD");
+
+        items.update({
+          id: item.id,
+          start: newStart,
+          ...item.end && { end: newEnd }
+        })
+      }
+
+      // Update the birth date
+      birthDate = newBirthDate;
+    }
 
   </script>
 </body>
