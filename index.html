@@ -36,6 +36,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="./standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.4.6/alasql.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.2/jszip.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.2/xlsx.js"></script>
+
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet"
     type="text/css" />
@@ -146,12 +150,17 @@
       for (let group of groupData) {
         excelData.push({
           id: group.id,
-          behaviour: group.content,
+          behaviour: group.content.replace("<br>", " "),
           date: items.get(group.id).start
         })
       }
 
       console.log('excelData :', excelData);
+
+      //
+      var opts = { headers: true };
+      var filename = 'InfantBehavior.xlsx'
+      alasql(`SELECT * INTO XLSX("${filename}",?) FROM ?`, [opts, excelData]);
     });
 
     function changeBirthDate(newBirthDate) {
