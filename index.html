@@ -149,9 +149,9 @@
       var excelData = [];
       for (let group of groupData) {
         excelData.push({
-          id: group.id,
-          behaviour: group.content.replace("<br>", " "),
-          date: items.get(group.id).start
+          ID: group.id,
+          Behaviour: group.content.replace("<br>", " "),
+          Date: moment(items.get(group.id).start).format("YYYY-MM-DD")
         })
       }
 
