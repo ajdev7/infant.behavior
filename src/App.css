@@ -5,18 +5,30 @@
   background-color: #212529;
 }
 
-.leftContent,
-.rightContent {
+.leftContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: auto;
-  width: 50%;
+  width: 40%;
   height: 100%;
   background-color: #1e1e2f;
   font-family: sans-serif;
   border-radius: 10px;
   padding: 60px 30px;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  width: 60%;
+  height: 100%;
+  background-color: #1e1e2f;
+  font-family: sans-serif;
+  border-radius: 10px;
+  padding: 60px 30px 60px 0px;
 }
 
 .dropdown {
@@ -41,29 +53,20 @@ td {
   padding: 8px;
 }
 
-.twoButtons {
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  margin-top: 40px;
-}
-
-.addData,
-.submitData {
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
-  height: 50px;
-}
-
 .chart-container {
   width: 100%;
   /* margin: 40px; */
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .chart {
   /* margin-top: 30px; */
+  height: 100%;
   background-color: white;
+}
+
+.react-datepicker__input-container > input {
+  width: 90px !important;
 }

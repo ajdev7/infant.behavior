@@ -56,11 +56,13 @@ export class BarChart extends Component {
     let Id = "bar-chart" + newId.toString();
 
     return (
-      <div className="barchart">
+      <div className="barchart" style={{ width: "100%", height: "90%" }}>
         <div className="title" style={{ width: "100%", textAlign: "center" }}>
-          <h3 style={{ padding: 10 }}>Bar Chart</h3>
+          <h3 style={{ padding: 10 }}>
+            Social Emotional Behavioral Graph for Infants
+          </h3>
         </div>
-        <div id={`${Id}`} style={{ width: "100%", height: 400 }}></div>
+        <div id={`${Id}`} style={{ width: "100%", height: "100%" }}></div>
       </div>
     );
   }
