@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/infant.behavior/static/css/main.2c1a880d.chunk.css",
+    "main.js": "/infant.behavior/static/js/main.ae510d80.chunk.js",
+    "main.js.map": "/infant.behavior/static/js/main.ae510d80.chunk.js.map",
+    "runtime-main.js": "/infant.behavior/static/js/runtime-main.134aa2e0.js",
+    "runtime-main.js.map": "/infant.behavior/static/js/runtime-main.134aa2e0.js.map",
+    "xlsx.js": "/infant.behavior/static/js/xlsx.56c96a98.chunk.js",
+    "xlsx.js.map": "/infant.behavior/static/js/xlsx.56c96a98.chunk.js.map",
+    "static/js/3.dd2621b0.chunk.js": "/infant.behavior/static/js/3.dd2621b0.chunk.js",
+    "static/js/3.dd2621b0.chunk.js.map": "/infant.behavior/static/js/3.dd2621b0.chunk.js.map",
+    "static/css/4.89f067aa.chunk.css": "/infant.behavior/static/css/4.89f067aa.chunk.css",
+    "static/js/4.70fb0877.chunk.js": "/infant.behavior/static/js/4.70fb0877.chunk.js",
+    "static/js/4.70fb0877.chunk.js.map": "/infant.behavior/static/js/4.70fb0877.chunk.js.map",
+    "static/js/5.f580cb5e.chunk.js": "/infant.behavior/static/js/5.f580cb5e.chunk.js",
+    "static/js/5.f580cb5e.chunk.js.map": "/infant.behavior/static/js/5.f580cb5e.chunk.js.map",
+    "static/js/6.46dd5e27.chunk.js": "/infant.behavior/static/js/6.46dd5e27.chunk.js",
+    "static/js/6.46dd5e27.chunk.js.map": "/infant.behavior/static/js/6.46dd5e27.chunk.js.map",
+    "index.html": "/infant.behavior/index.html",
+    "precache-manifest.448702d48a19a6f3a68a98dd3e270b58.js": "/infant.behavior/precache-manifest.448702d48a19a6f3a68a98dd3e270b58.js",
+    "service-worker.js": "/infant.behavior/service-worker.js",
+    "static/css/4.89f067aa.chunk.css.map": "/infant.behavior/static/css/4.89f067aa.chunk.css.map",
+    "static/css/main.2c1a880d.chunk.css.map": "/infant.behavior/static/css/main.2c1a880d.chunk.css.map",
+    "static/js/4.70fb0877.chunk.js.LICENSE.txt": "/infant.behavior/static/js/4.70fb0877.chunk.js.LICENSE.txt",
+    "static/js/5.f580cb5e.chunk.js.LICENSE.txt": "/infant.behavior/static/js/5.f580cb5e.chunk.js.LICENSE.txt",
+    "static/js/6.46dd5e27.chunk.js.LICENSE.txt": "/infant.behavior/static/js/6.46dd5e27.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.134aa2e0.js",
+    "static/css/4.89f067aa.chunk.css",
+    "static/js/4.70fb0877.chunk.js",
+    "static/css/main.2c1a880d.chunk.css",
+    "static/js/main.ae510d80.chunk.js"
+  ]
+}
