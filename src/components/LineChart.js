@@ -36,13 +36,19 @@ export class LineChart extends Component {
     chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
 
     // Create axes
-    let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    // let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    var xAxis = chart.xAxes.push(new am4charts.DurationAxis());
+    xAxis.baseUnit = "day";
+    xAxis.title.text = "Duration";
+
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
     // Create series
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
-    series.dataFields.dateX = "date";
+    // series.dataFields.dateX = "date";
+    series.dataFields.valueX = "totalDays";
+
     series.tooltipText = "{name}";
     series.strokeWidth = 2;
     // series.minBulletDistance = 15;
@@ -68,7 +74,9 @@ export class LineChart extends Component {
     // Make a panning cursor
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.behavior = "panXY";
-    chart.cursor.xAxis = dateAxis;
+
+    // chart.cursor.xAxis = dateAxis;
+
     chart.cursor.snapToSeries = series;
 
     // Create vertical scrollbar and place it before the value axis

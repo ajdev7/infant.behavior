@@ -23,6 +23,7 @@ export class App extends Component {
           date: moment(startDate).toDate(),
           month: 0,
           day: 1,
+          totalDays: 1,
         },
         {
           key: "2",
@@ -32,6 +33,7 @@ export class App extends Component {
           date: moment(startDate).add(2, "days").toDate(),
           month: 0,
           day: 2,
+          totalDays: 2,
         },
         {
           key: "3",
@@ -40,6 +42,7 @@ export class App extends Component {
           date: moment(startDate).add(5, "days").toDate(),
           month: 0,
           day: 5,
+          totalDays: 5,
         },
         {
           key: "4",
@@ -49,6 +52,7 @@ export class App extends Component {
           date: moment(startDate).add(21, "days").toDate(),
           month: 0,
           day: 21,
+          totalDays: 21,
         },
         {
           key: "5",
@@ -57,6 +61,7 @@ export class App extends Component {
           date: moment(startDate).add(49, "days").toDate(),
           month: 1,
           day: 21,
+          totalDays: 51,
         },
         {
           key: "6",
@@ -66,6 +71,7 @@ export class App extends Component {
           date: moment(startDate).add(3, "months").toDate(),
           month: 2,
           day: 0,
+          totalDays: 60,
         },
         {
           key: "7",
@@ -74,6 +80,7 @@ export class App extends Component {
           date: moment(startDate).add(4, "months").toDate(),
           month: 4,
           day: 0,
+          totalDays: 120,
         },
         {
           key: "8",
@@ -82,6 +89,7 @@ export class App extends Component {
           date: moment(startDate).add(6, "months").add(15, "days").toDate(),
           month: 6,
           day: 0,
+          totalDays: 180,
         },
         {
           key: "9",
@@ -90,6 +98,7 @@ export class App extends Component {
           date: moment(startDate).add(8, "months").toDate(),
           month: 8,
           day: 0,
+          totalDays: 240,
         },
         {
           key: "10",
@@ -98,6 +107,7 @@ export class App extends Component {
           date: moment(startDate).add(9, "months").toDate(),
           month: 9,
           day: 0,
+          totalDays: 270,
         },
         {
           key: "11",
@@ -106,6 +116,7 @@ export class App extends Component {
           date: moment(startDate).add(10, "months").toDate(),
           month: 10,
           day: 0,
+          totalDays: 300,
         },
         {
           key: "12",
@@ -114,6 +125,7 @@ export class App extends Component {
           date: moment(startDate).add(11, "months").toDate(),
           month: 11,
           day: 0,
+          totalDays: 330,
         },
         {
           key: "13",
@@ -123,6 +135,7 @@ export class App extends Component {
           date: moment(startDate).add(12, "months").toDate(),
           month: 12,
           day: 0,
+          totalDays: 360,
         },
         {
           key: "14",
@@ -132,6 +145,7 @@ export class App extends Component {
           date: moment(startDate).add(14, "months").toDate(),
           month: 14,
           day: 0,
+          totalDays: 420,
         },
       ],
     };
