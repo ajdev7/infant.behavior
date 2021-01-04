@@ -6,7 +6,7 @@ import _ from "lodash";
 
 // am4core.useTheme(am4themes_animated);
 
-export class BarChart extends Component {
+export class LineChart extends Component {
   componentDidMount() {
     this.initChart();
   }
@@ -89,7 +89,7 @@ export class BarChart extends Component {
 
   render() {
     return (
-      <div className="barchart" style={{ width: "100%", height: "90%" }}>
+      <div className="linechart" style={{ width: "100%", height: "90%" }}>
         <div className="title" style={{ width: "100%", textAlign: "center" }}>
           <h3 style={{ padding: 10 }}>
             Social Emotional Behavioral Graph for Infants
@@ -101,4 +101,4 @@ export class BarChart extends Component {
   }
 }
 
-export default BarChart;
+export default LineChart;
