@@ -52,11 +52,7 @@ class DaySelect extends React.Component {
         <select value={this.state.value} onChange={this.onChangeMonth}>
           {this.months.map((option) => {
             return (
-              <option
-                value={option}
-                key={option}
-                selected={option == this.state.month}
-              >
+              <option value={option} key={option}>
                 {option}
               </option>
             );
@@ -68,11 +64,7 @@ class DaySelect extends React.Component {
         <select value={this.state.value} onChange={this.onChangeDay}>
           {this.days.map((option) => {
             return (
-              <option
-                value={option}
-                key={option}
-                selected={option == this.state.day}
-              >
+              <option value={option} key={option}>
                 {option}
               </option>
             );

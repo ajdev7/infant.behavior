@@ -14,10 +14,14 @@ export class LineChart extends Component {
   componentDidUpdate(prevProps) {
     //Handle refreshing the chart when the dataset changes
     // if (!_.isEqual(prevProps.data, this.props.data)) {
-    if (this.chart._super) {
-      this.chart.dispose();
-    }
-    this.initChart();
+
+    // if (this.chart._super) {
+    //   this.chart.dispose();
+    // }
+    // this.initChart();
+
+    this.range.value = this.props.guide;
+
     // }
   }
 
@@ -47,6 +51,7 @@ export class LineChart extends Component {
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
     // series.dataFields.dateX = "date";
+
     series.dataFields.valueX = "totalDays";
 
     series.tooltipText = "{name}";
@@ -92,15 +97,26 @@ export class LineChart extends Component {
     // dateAxis.start = 0.79;
     // dateAxis.keepSelection = true;
 
+    // Create value axis range
+    var range = xAxis.axisRanges.create();
+    range.value = this.props.guide;
+    range.grid.stroke = am4core.color("#A96478");
+    range.grid.strokeWidth = 2;
+    range.grid.strokeOpacity = 1;
+    range.grid.above = true;
+
+    this.range = range;
+
     this.chart = chart;
   }
 
   render() {
     return (
-      <div className="linechart" style={{ width: "100%", height: "90%" }}>
+      <div className="linechart" style={{ width: "100%", height: "80%" }}>
         <div className="title" style={{ width: "100%", textAlign: "center" }}>
           <h3 style={{ padding: 10 }}>
-            Social Emotional Behavioral Graph for Infants
+            Social-Emotional Behavioral Graph for Infants <br />
+            (Newborn to 15 Months)
           </h3>
         </div>
         <div id="chartdiv" style={{ width: "100%", height: "100%" }}></div>

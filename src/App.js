@@ -15,6 +15,7 @@ export class App extends Component {
     let startDate = moment();
 
     this.state = {
+      guide: 0,
       items: [
         {
           key: "1",
@@ -145,7 +146,7 @@ export class App extends Component {
           date: moment(startDate).add(14, "months").toDate(),
           month: 14,
           day: 0,
-          totalDays: 420,
+          totalDays: 425,
         },
       ],
     };
@@ -154,13 +155,28 @@ export class App extends Component {
   onUpdateDate = (key, month, day) => {
     console.log(`key : ${key}, month : ${month}, day : ${day}`);
 
-    let index = this.state.items.findIndex((el) => el.key == key);
+    // let index = this.state.items.findIndex((el) => el.key == key);
 
-    let items = this.state.items;
-    items[index].month = month;
-    items[index].day = day;
+    // let items = this.state.items;
+    // items[index].month = month;
+    // items[index].day = day;
 
-    this.setState(items);
+    month = parseInt(month);
+    day = parseInt(day);
+    let totalDays = 0;
+    if (month > 12) {
+      totalDays = 365 + (month - 12) * 30 + day;
+    } else {
+      totalDays = month * 30 + day;
+    }
+
+    console.log("totalDays : ", totalDays);
+
+    this.setState({
+      guide: totalDays,
+    });
+
+    // this.setState(items);
   };
 
   render() {
@@ -169,9 +185,21 @@ export class App extends Component {
     return (
       <div className="main">
         <div className="leftContent">
-          {/* Datatable */}
-          {/* datatable to show data */}
-          <div className="datatable">
+          <div className="date-panel">
+            <div>
+              <h5 style={{ padding: 10 }}>How old is the child?</h5>
+            </div>
+            <div>
+              <DaySelect
+                id={1}
+                month={0}
+                day={0}
+                onUpdateDate={this.onUpdateDate}
+              />
+            </div>
+          </div>
+
+          {/* <div className="datatable">
             <table className="data-table">
               <tbody>
                 <tr>
@@ -198,13 +226,13 @@ export class App extends Component {
                 })}
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
 
         <div className="rightContent">
           <div className="chart-container">
             <div className="chart">
-              <LineChart data={this.state.items} />
+              <LineChart data={this.state.items} guide={this.state.guide} />
             </div>
           </div>
         </div>
