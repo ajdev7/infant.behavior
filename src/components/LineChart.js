@@ -14,13 +14,13 @@ export class LineChart extends Component {
   componentDidUpdate(prevProps) {
     //Handle refreshing the chart when the dataset changes
     // if (!_.isEqual(prevProps.data, this.props.data)) {
-
     // if (this.chart._super) {
     //   this.chart.dispose();
     // }
     // this.initChart();
 
     this.range.value = this.props.guide;
+    this.seriesRange.value = this.props.guide;
 
     // }
   }
@@ -56,7 +56,8 @@ export class LineChart extends Component {
 
     series.tooltipText = "{name}";
     series.strokeWidth = 2;
-    // series.minBulletDistance = 15;
+    series.minBulletDistance = 15;
+    series.fillOpacity = 0.5;
 
     // Drop-shaped tooltips
     series.tooltip.background.cornerRadius = 20;
@@ -94,19 +95,55 @@ export class LineChart extends Component {
     chart.scrollbarX.series.push(series);
     chart.scrollbarX.parent = chart.bottomAxesContainer;
 
-    // dateAxis.start = 0.79;
+    //xAxis.start = -500;
     // dateAxis.keepSelection = true;
+
+    var seriesRange = xAxis.createSeriesRange(series);
+    //seriesRange.contents.strokeDasharray = "2,3";
+    // seriesRange.contents.stroke = chart.colors.getIndex(8);
+    // seriesRange.contents.strokeWidth = 1;
+
+    seriesRange.contents.fill = chart.colors.getIndex(8);
+    seriesRange.contents.fillOpacity = 0.1;
+
+    seriesRange.value = 0;
+    seriesRange.endValue = chart.data[chart.data.length - 1].totalDays;
 
     // Create value axis range
     var range = xAxis.axisRanges.create();
-    range.value = this.props.guide;
-    range.grid.stroke = am4core.color("#A96478");
+    // range.value = this.props.guide;
+    // range.grid.stroke = am4core.color("#A96478");
+    // range.grid.strokeWidth = 2;
+    // range.grid.strokeOpacity = 1;
+    // range.grid.above = true;
+
+    range.grid.stroke = chart.colors.getIndex(8);
     range.grid.strokeWidth = 2;
     range.grid.strokeOpacity = 1;
     range.grid.above = true;
 
-    this.range = range;
+    // range.bullet = new am4core.ResizeButton();
+    // range.bullet.background.fill = chart.colors.getIndex(0);
+    // range.bullet.background.states.copyFrom(
+    //   chart.zoomOutButton.background.states
+    // );
+    // range.bullet.minX = 0;
+    // range.bullet.adapter.add("minY", function (minY, target) {
+    //   target.maxY = chart.plotContainer.maxHeight;
+    //   target.maxX = chart.plotContainer.maxWidth;
+    //   return chart.plotContainer.maxHeight;
+    // });
 
+    // range.bullet.events.on("dragged", function () {
+    //   range.value = xAxis.xToValue(range.bullet.pixelX);
+    //   seriesRange.value = range.value;
+
+    //   console.log("range.value : ", range.value);
+
+    // });
+
+    this.range = range;
+    this.seriesRange = seriesRange;
     this.chart = chart;
   }
 
