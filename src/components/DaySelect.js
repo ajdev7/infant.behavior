@@ -11,15 +11,11 @@ const options = [
 class DaySelect extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log("Day select : ", this.props.month, this.props.day);
-
     // this.state = {
     //   month: this.props.month,
     //   day: this.props.day,
     // };
 
-    console.log(this.state);
     this.months = [];
     for (let i = 0; i <= 15; i++) {
       this.months.push(i);
