@@ -12,10 +12,12 @@ class DaySelect extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      month: this.props.month,
-      day: this.props.day,
-    };
+    console.log("Day select : ", this.props.month, this.props.day);
+
+    // this.state = {
+    //   month: this.props.month,
+    //   day: this.props.day,
+    // };
 
     console.log(this.state);
     this.months = [];
@@ -34,7 +36,7 @@ class DaySelect extends React.Component {
       month: e.target.value,
     });
 
-    this.props.onUpdateDate(this.props.id, e.target.value, this.state.day);
+    this.props.onUpdateDate(e.target.value, this.props.day);
   };
 
   onChangeDay = (e) => {
@@ -42,14 +44,16 @@ class DaySelect extends React.Component {
       day: e.target.value,
     });
 
-    this.props.onUpdateDate(this.props.id, this.state.month, e.target.value);
+    this.props.onUpdateDate(this.props.month, e.target.value);
   };
 
   render() {
+    console.log("render day select : props :", this.props.day);
+
     return (
       <div className="form-group">
         {/* Months */}
-        <select value={this.state.value} onChange={this.onChangeMonth}>
+        <select onChange={this.onChangeMonth} value={this.props.month}>
           {this.months.map((option) => {
             return (
               <option value={option} key={option}>
@@ -61,7 +65,7 @@ class DaySelect extends React.Component {
         <span>&nbsp;Month&nbsp;&nbsp;</span>
 
         {/* Days */}
-        <select value={this.state.value} onChange={this.onChangeDay}>
+        <select onChange={this.onChangeDay} value={this.props.day}>
           {this.days.map((option) => {
             return (
               <option value={option} key={option}>

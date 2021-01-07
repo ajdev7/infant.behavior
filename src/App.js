@@ -15,7 +15,9 @@ export class App extends Component {
     let startDate = moment();
 
     this.state = {
-      guide: 0,
+      guide: 30,
+      month: 1,
+      day: 0,
       items: [
         {
           key: "1",
@@ -76,7 +78,7 @@ export class App extends Component {
         },
         {
           key: "7",
-          name: "Babbles, laughs, orient to voice, ad enjoy looking.",
+          name: "Babbles, laughs, orient to voice, and enjoy looking.",
           value: "7",
           date: moment(startDate).add(4, "months").toDate(),
           month: 4,
@@ -152,8 +154,8 @@ export class App extends Component {
     };
   }
 
-  onUpdateDate = (key, month, day) => {
-    console.log(`key : ${key}, month : ${month}, day : ${day}`);
+  onUpdateDate = (month, day) => {
+    console.log(`month : ${month}, day : ${day}`);
 
     // let index = this.state.items.findIndex((el) => el.key == key);
 
@@ -173,14 +175,43 @@ export class App extends Component {
     console.log("totalDays : ", totalDays);
 
     this.setState({
+      month,
+      day,
       guide: totalDays,
     });
+  };
 
-    // this.setState(items);
+  onDragDate = (day) => {
+    let guide = day;
+
+    console.log(`Drag day : ${day}`);
+
+    day = parseInt(day);
+    let month = 0;
+    if (day > 365) {
+      day -= 365;
+      month = 12 + day / 30;
+      day %= 30;
+    } else {
+      month = day / 30;
+      day %= 30;
+    }
+
+    month = parseInt(month);
+
+    console.log(`month : ${month}, day : ${day}`);
+
+    this.setState({
+      month,
+      day,
+      guide,
+    });
   };
 
   render() {
     let entry = this.state.items;
+
+    console.log("rendered");
 
     return (
       <div className="main">
@@ -191,48 +222,22 @@ export class App extends Component {
             </div>
             <div>
               <DaySelect
-                id={1}
-                month={0}
-                day={0}
+                month={this.state.month}
+                day={this.state.day}
                 onUpdateDate={this.onUpdateDate}
               />
             </div>
           </div>
-
-          {/* <div className="datatable">
-            <table className="data-table">
-              <tbody>
-                <tr>
-                  <th>
-                    Social-Emotional Behavioral Graph for Infants (Newborn to 15
-                    Months)
-                  </th>
-                  <th style={{ width: 200 }}>Date</th>
-                </tr>
-                {entry.map((item) => {
-                  return (
-                    <tr key={item.key}>
-                      <td>{item.name}</td>
-                      <td>
-                        <DaySelect
-                          id={item.key}
-                          month={item.month}
-                          day={item.day}
-                          onUpdateDate={this.onUpdateDate}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div> */}
         </div>
 
         <div className="rightContent">
           <div className="chart-container">
             <div className="chart">
-              <LineChart data={this.state.items} guide={this.state.guide} />
+              <LineChart
+                data={this.state.items}
+                guide={this.state.guide}
+                onDragDate={this.onDragDate}
+              />
             </div>
           </div>
         </div>
