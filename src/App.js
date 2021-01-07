@@ -78,7 +78,7 @@ export class App extends Component {
         },
         {
           key: "7",
-          name: "Babbles, laughs, orient to voice, and enjoy looking.",
+          name: "Babbles, laughs, orients to voice, and enjoys looking.",
           value: "7",
           date: moment(startDate).add(4, "months").toDate(),
           month: 4,
