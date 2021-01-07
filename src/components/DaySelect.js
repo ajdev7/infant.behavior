@@ -48,8 +48,6 @@ class DaySelect extends React.Component {
   };
 
   render() {
-    console.log("render day select : props :", this.props.day);
-
     return (
       <div className="form-group">
         {/* Months */}

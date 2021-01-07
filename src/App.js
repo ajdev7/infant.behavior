@@ -155,8 +155,6 @@ export class App extends Component {
   }
 
   onUpdateDate = (month, day) => {
-    console.log(`month : ${month}, day : ${day}`);
-
     // let index = this.state.items.findIndex((el) => el.key == key);
 
     // let items = this.state.items;
@@ -172,8 +170,6 @@ export class App extends Component {
       totalDays = month * 30 + day;
     }
 
-    console.log("totalDays : ", totalDays);
-
     this.setState({
       month,
       day,
@@ -183,8 +179,6 @@ export class App extends Component {
 
   onDragDate = (day) => {
     let guide = day;
-
-    console.log(`Drag day : ${day}`);
 
     day = parseInt(day);
     let month = 0;
@@ -199,8 +193,6 @@ export class App extends Component {
 
     month = parseInt(month);
 
-    console.log(`month : ${month}, day : ${day}`);
-
     this.setState({
       month,
       day,
@@ -209,10 +201,6 @@ export class App extends Component {
   };
 
   render() {
-    let entry = this.state.items;
-
-    console.log("rendered");
-
     return (
       <div className="main">
         <div className="leftContent">
